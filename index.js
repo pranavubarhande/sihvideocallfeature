@@ -1,7 +1,9 @@
-const app = require("express")();
+const express = require('express');
+const app = express();
 const server = require("http").createServer(app);
 const cors = require("cors");
-
+const path = require('path');
+app.use(express.static(path.join(__dirname, 'client', 'public')));
 const io = require("socket.io")(server, {
 	cors: {
 		origin: "*",
@@ -16,6 +18,10 @@ const PORT = process.env.PORT || 5000;
 app.get('/', (req, res) => {
 	res.send('Running');
 });
+app.get('/videocall', (req, res) => {
+	// Send the 'index.html' file as the response
+	res.sendFile(path.join(__dirname, 'client', 'public', 'index.html'));
+  });
 
 io.on("connection", (socket) => {
 	socket.emit("me", socket.id);

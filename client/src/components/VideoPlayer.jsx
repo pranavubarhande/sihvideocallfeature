@@ -20,6 +20,8 @@ const useStyles = makeStyles((theme) => ({
     padding: '10px',
     border: '2px solid black',
     margin: '10px',
+    width: '100%',
+    justifyContent: 'center',
   },
 }));
 
