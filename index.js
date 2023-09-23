@@ -3,7 +3,7 @@ const app = express();
 const server = require("http").createServer(app);
 const cors = require("cors");
 const path = require('path');
-app.use(express.static(path.join(__dirname, 'client', 'public')));
+app.use(express.static(path.join(__dirname, 'client', 'build')));
 const io = require("socket.io")(server, {
 	cors: {
 		origin: "*",
@@ -19,8 +19,9 @@ app.get('/', (req, res) => {
 	res.send('Running');
 });
 app.get('/videocall', (req, res) => {
-	// Send the 'index.html' file as the response
-	res.sendFile(path.join(__dirname, 'client', 'public', 'index.html'));
+	// Send the 'index.html' file as the response 
+	console.log('vidocall');
+	res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
   });
 
 io.on("connection", (socket) => {
